@@ -2,7 +2,7 @@
 
 int main(){
 
-    int numerosecreto = 55;
+    int numerosecreto = 85;
     
     printf("%d \n",numerosecreto);
 
