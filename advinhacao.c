@@ -2,7 +2,7 @@
 
 int main(){
 
-    int numerosecreto = 85;
+    int numerosecreto = rand()%10;
     int numerotentativas = 20;
     
     printf("%d \n",numerosecreto);
