@@ -11,24 +11,45 @@ int main(){
     int numerosecreto = rand()%10;
     int numerotentativas = 20;
     int chute = 0;
-    int nivel;
+    int nivel, tentativa = 1;
     
+    printf("Bem vindo ao jogo de adivinhação!!! \n\n");
+
     printf("Selecione o nível de dificuldade desejado: \n");
     printf("(1) Fácil   (2) Médio   (3) Difí­cil \n");
     scanf("%d",&nivel);
+    switch(nivel)
+    {
+        case 1:
+        numerotentativas = 50;
+        break;
+
+        case 2:
+        numerotentativas = 25;
+        break;
+
+        default:
+        numerotentativas = 10;
+    }
 
     printf("%d \n",numerosecreto);
 
+    printf("Tentativa %d de %d\n",tentativa,numerotentativas);
     printf("Digite um número maior que zero: ");
     scanf("%d",&chute);
 
     if (chute == numerosecreto)
     {
-        printf("Parabéns, você ganhou!!!");
+        printf("\n\nParabéns, você ganhou!!!\n\n");
+    }
+    else if (chute < numerosecreto)
+    {
+        printf("\nVocê errou.\nO número secreto é maior.\n");
+    }
+    else
+    {
+        printf("\nVocê errou.\nO número secreto é menor.\n");
     }
     
-
-    
-
 
 }
