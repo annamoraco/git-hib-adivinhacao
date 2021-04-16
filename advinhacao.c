@@ -100,10 +100,12 @@ int main(){
     if (tentativa <= numerotentativas)
     {
         printf("\n\nParabéns, você ganhou!!!\n\n");
+        printf("\\m/_(>_<)_\\m/\n");
     }
     else 
     {
         printf("\n\nVocê perdeu, tente mais uma vez.\n\n");
+        printf(".·´¯`(>__<)´¯`·. \n");
     }
 
 }
