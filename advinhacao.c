@@ -9,30 +9,31 @@ int main(){
     int s = time(NULL);
     srand(s);
     int numerosecreto = rand()%100;
-    int numerotentativas = 20;
+    int numerotentativas;
     int chute = -1;
     int nivel, tentativa = 1;
     
     printf("\n\nBem vindo ao jogo de adivinhação!!! \n\n");
 
     printf("Selecione o nível de dificuldade desejado: \n");
-    printf("(1) Fácil   (2) Médio   (3) Difí­cil \n");
+    printf("(1) Fácil   (2) Médio   (3) Difí­cil \n\n");
+    printf("Escolha: ");
     scanf("%d",&nivel);
+
     switch(nivel)
     {
         case 1:
-        numerotentativas = 50;
-        break;
+            numerotentativas = 50;
+            break;
 
         case 2:
-        numerotentativas = 25;
-        break;
+            numerotentativas = 25;
+            break;
 
         default:
-        numerotentativas = 10;
+            numerotentativas = 10;
+            break;
     }
-
-    printf("%d \n",numerosecreto);
 
     while (tentativa <= numerotentativas)
     {
