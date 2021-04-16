@@ -17,7 +17,11 @@ int main(){
     int tentativa = 1;
     int x = 0;
     
-    printf("\n\nBem vindo ao jogo de adivinhação!!! \n\n");
+    printf("\n\n*******************************************\n");
+    printf("*                                         *\n");
+    printf("*   Bem vindo ao jogo de adivinhação!!!   *\n");
+    printf("*                                         *\n");
+    printf("*******************************************\n\n");
 
     while (x == 0){
 
@@ -72,7 +76,7 @@ int main(){
                     {
                         x = 1;
                     } else {
-                        printf("Valor inválido.\n");
+                        printf("\nValor inválido.\n");
                         break;
                     }            
                 }
@@ -80,7 +84,7 @@ int main(){
         }
 
         chute = atoi(schute);
-        
+
         if (chute == numerosecreto)
         {
             break;
