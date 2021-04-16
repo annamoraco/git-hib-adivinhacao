@@ -9,7 +9,7 @@ int main(){
     int s = time(NULL);
     srand(s);
     int numerosecreto = rand()%100;
-    int numerotentativas;
+    int numerotentativas = 0;
     int chute = -1;
     int nivel, tentativa = 1;
     
