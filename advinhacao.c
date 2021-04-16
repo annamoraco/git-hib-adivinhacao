@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <locale.h>
+#include <ctype.h>
 
 int main(){
 
@@ -10,42 +11,76 @@ int main(){
     srand(s);
     int numerosecreto = rand()%100;
     int numerotentativas = 0;
-    int chute = -1;
-    int nivel, tentativa = 1;
+    char schute[5];
+    int chute = 1;
+    char nivel; 
+    int tentativa = 1;
+    int x = 0;
     
     printf("\n\nBem vindo ao jogo de adivinhação!!! \n\n");
 
-    printf("Selecione o nível de dificuldade desejado: \n");
-    printf("(1) Fácil   (2) Médio   (3) Difí­cil \n\n");
-    printf("Escolha: ");
-    scanf("%d",&nivel);
+    while (x == 0){
 
-    switch(nivel)
-    {
-        case 1:
-            numerotentativas = 50;
-            break;
+        printf("Selecione o nível de dificuldade desejado: \n");
+        printf("(1) Fácil   (2) Médio   (3) Dificíl \n\n");
+        printf("Escolha: ");
+        scanf("%c",&nivel);
+        fflush(stdin);
 
-        case 2:
-            numerotentativas = 25;
-            break;
+        if(nivel>='0' && nivel<='9')
+        {   
+            switch(nivel)
+            {
+                case '1':
+                    numerotentativas = 50;
+                    break;
 
-        default:
-            numerotentativas = 10;
-            break;
+                case '2':
+                    numerotentativas = 25;
+                    break;
+
+                default:
+                    numerotentativas = 10;
+                    break;
+            }         
+            x = 1;
+        } else {
+            printf("\nEntrada inválida: %c\n\n",nivel);
+        }
     }
+
 
     while (tentativa <= numerotentativas)
     {
-        printf("\nTentativa %d de %d\n",tentativa,numerotentativas);
-        printf("Digite um número maior ou igual zero: ");
-        scanf("%d",&chute);
-        if (chute < 0)
-        {
-            printf("\nVocê não pode digitar números negativos.\n");
-            continue;
+        x = 0;
+
+        while (x == 0)
+        {    
+            printf("\nTentativa %d de %d\n",tentativa,numerotentativas);
+            printf("Digite um número maior ou igual zero: ");
+            scanf("%s",&schute);
+                
+            if (schute[0] == '-' )
+            {
+                printf("\nVocê não pode digitar números negativos.\n");
+                continue;
+            } else {
+                for (int i=0;schute[i]!='\0';i++)
+                {
+                    x = 0;
+                    if(schute[i]>='0' && schute[i]<='9')
+                    {
+                        x = 1;
+                    } else {
+                        printf("Valor inválido.\n");
+                        break;
+                    }            
+                }
+            }
         }
 
+        chute = atoi(schute);
+        
         if (chute == numerosecreto)
         {
             break;
