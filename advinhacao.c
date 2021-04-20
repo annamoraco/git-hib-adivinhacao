@@ -4,26 +4,20 @@
 #include <locale.h>
 #include <ctype.h>
 
-int main(){
-
-    setlocale(LC_ALL, "Portuguese");
-    int s = time(NULL);
-    srand(s);
-    int numerosecreto = rand()%100;
-    int numerotentativas = 0;
-    char schute[5];
-    int chute = 1;
-    char nivel; 
-    int tentativa = 1;
-    int x = 0;
-    
+void cabecalho(){
     printf("\n\n*******************************************\n");
     printf("*                                         *\n");
     printf("*   Bem vindo ao jogo de adivinhação!!!   *\n");
     printf("*                                         *\n");
     printf("*******************************************\n\n");
+}
 
-    while (x == 0){
+int seleciona_dificuldade(){
+    int x = 0;
+    char nivel;
+    int numerotentativas = 0;
+
+        while (x == 0){
 
         printf("Selecione o nível de dificuldade desejado: \n");
         printf("(1) Fácil   (2) Médio   (3) Dificíl \n\n");
@@ -31,7 +25,7 @@ int main(){
         scanf("%c",&nivel);
         fflush(stdin);
 
-        if(nivel>='0' && nivel<='9')
+        if(nivel>='1' && nivel<='3')
         {   
             switch(nivel)
             {
@@ -52,19 +46,22 @@ int main(){
             printf("\nEntrada inválida: %c\n\n",nivel);
         }
     }
+    return numerotentativas;
+}
 
+int recebefiltrachute(int tentativa, int numerotentativas){
 
-    while (tentativa <= numerotentativas)
-    {
-        x = 0;
+    int x = 0; 
+    char schute[5];
+    int chute = 1; 
 
-        while (x == 0)
-        {    
-            printf("\nTentativa %d de %d\n",tentativa,numerotentativas);
-            printf("Digite um número maior ou igual zero: ");
-            scanf("%s",&schute);
-                
-            if (schute[0] == '-' )
+    while (x == 0)
+    {    
+        printf("\nTentativa %d de %d\n",tentativa,numerotentativas);
+        printf("Digite um número maior ou igual zero: ");
+        scanf("%s",&schute);
+
+        if (schute[0] == '-' )
             {
                 printf("\nVocê não pode digitar números negativos.\n");
                 continue;
@@ -81,26 +78,24 @@ int main(){
                     }            
                 }
             }
-        }
+    }
+    chute = atoi(schute);
+    return chute;
+}
 
-        chute = atoi(schute);
+void analisachute(int chute, int numerosecreto, int* tentativa){
+    if (chute < numerosecreto)
+    {
+        printf("\nVocê errou.\nO número secreto é maior.\n");
+    }
+    else
+    {
+        printf("\nVocê errou.\nO número secreto é menor.\n");
+    }
+    (*tentativa)++;
+}
 
-        if (chute == numerosecreto)
-        {
-            break;
-        }
-        else if (chute < numerosecreto)
-        {
-            printf("\nVocê errou.\nO número secreto é maior.\n");
-        }
-        else
-        {
-            printf("\nVocê errou.\nO número secreto é menor.\n");
-        }
-
-        tentativa++;
-    }    
-
+void analisaresultado(int tentativa , int numerotentativas){
     if (tentativa <= numerotentativas)
     {
         printf("\n\nParabéns, você ganhou!!!\n\n");
@@ -111,5 +106,37 @@ int main(){
         printf("\n\nVocê perdeu, tente mais uma vez.\n\n");
         printf(".·´¯`(>__<)´¯`·. \n");
     }
+}
+
+int main(){
+
+    setlocale(LC_ALL, "Portuguese");
+    int s = time(NULL);
+    srand(s);
+    int numerosecreto = rand()%100;
+    int numerotentativas = 0;
+    int chute = 1; 
+    int tentativa = 1;
+    
+    cabecalho();
+
+    numerotentativas = seleciona_dificuldade(); 
+
+    while (tentativa <= numerotentativas)
+    {                
+        chute = recebefiltrachute(tentativa, numerotentativas);   
+
+        printf("chute: %d",chute);  
+
+        if (chute == numerosecreto)
+        {
+            break;
+        }
+        
+        analisachute(chute, numerosecreto,&tentativa);      
+
+    }    
+
+    analisaresultado(tentativa, numerotentativas);
 
 }
