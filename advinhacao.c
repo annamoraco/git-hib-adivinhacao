@@ -3,6 +3,7 @@
 #include <time.h>
 #include <locale.h>
 #include <ctype.h>
+#include "advinhacao.h"
 
 void cabecalho(){
     printf("\n\n*******************************************\n");
@@ -53,7 +54,6 @@ int recebefiltrachute(int tentativa, int numerotentativas){
 
     int x = 0; 
     char schute[5];
-    int chute = 1; 
 
     while (x == 0)
     {    
@@ -72,6 +72,7 @@ int recebefiltrachute(int tentativa, int numerotentativas){
                     if(schute[i]>='0' && schute[i]<='9')
                     {
                         x = 1;
+
                     } else {
                         printf("\nValor inválido.\n");
                         break;
@@ -79,8 +80,8 @@ int recebefiltrachute(int tentativa, int numerotentativas){
                 }
             }
     }
-    chute = atoi(schute);
-    return chute;
+
+    return atoi(schute);
 }
 
 void analisachute(int chute, int numerosecreto, int* tentativa){
@@ -122,13 +123,13 @@ int main(){
 
     numerotentativas = seleciona_dificuldade(); 
 
-    while (tentativa <= numerotentativas)
+    while (tentativa <= numerotentativas )
     {                
         chute = recebefiltrachute(tentativa, numerotentativas);   
 
         printf("chute: %d",chute);  
 
-        if (chute == numerosecreto)
+        if (chute == numerosecreto) 
         {
             break;
         }
