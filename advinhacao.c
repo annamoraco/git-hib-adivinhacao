@@ -88,12 +88,18 @@ void analisachute(int chute, int numerosecreto, int* tentativa){
     if (chute < numerosecreto)
     {
         printf("\nVocê errou.\nO número secreto é maior.\n");
+        (*tentativa)++;
+    }
+    else if (chute > numerosecreto)
+    {
+        printf("\nVocê errou.\nO número secreto é menor.\n");
+        (*tentativa)++;
     }
     else
     {
-        printf("\nVocê errou.\nO número secreto é menor.\n");
+        return ;
     }
-    (*tentativa)++;
+    
 }
 
 void analisaresultado(int tentativa , int numerotentativas){
@@ -115,25 +121,19 @@ int main(){
     int s = time(NULL);
     srand(s);
     int numerosecreto = rand()%100;
-    int numerotentativas = 0;
-    int chute = 1; 
-    int tentativa = 1;
+    int numerotentativas = 0, tentativa = 1;
+    int chute = 1, acertou = 0; 
     
     cabecalho();
 
     numerotentativas = seleciona_dificuldade(); 
 
-    while (tentativa <= numerotentativas )
+    while (tentativa <= numerotentativas && !acertou )
     {                
         chute = recebefiltrachute(tentativa, numerotentativas);   
 
-        printf("chute: %d",chute);  
+        acertou = chute == numerosecreto;
 
-        if (chute == numerosecreto) 
-        {
-            break;
-        }
-        
         analisachute(chute, numerosecreto,&tentativa);      
 
     }    
